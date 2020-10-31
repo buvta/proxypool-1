@@ -3,12 +3,12 @@ package cron
 import (
 	"runtime"
 
+	"github.com/Sansui233/proxypool/internal/app"
 	"github.com/jasonlvhit/gocron"
-	"github.com/zu1k/proxypool/internal/app"
 )
 
 func Cron() {
-	_ = gocron.Every(15).Minutes().Do(crawlTask)
+	_ = gocron.Every(60).Minutes().Do(crawlTask)
 	<-gocron.Start()
 }
 

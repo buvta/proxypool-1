@@ -7,11 +7,11 @@ import (
 	_ "net/http/pprof"
 	"os"
 
-	"github.com/zu1k/proxypool/api"
-	"github.com/zu1k/proxypool/internal/app"
-	"github.com/zu1k/proxypool/internal/cron"
-	"github.com/zu1k/proxypool/internal/database"
-	"github.com/zu1k/proxypool/pkg/proxy"
+	"github.com/Sansui233/proxypool/api"
+	"github.com/Sansui233/proxypool/internal/app"
+	"github.com/Sansui233/proxypool/internal/cron"
+	"github.com/Sansui233/proxypool/internal/database"
+	"github.com/Sansui233/proxypool/pkg/proxy"
 )
 
 var configFilePath = ""
@@ -36,9 +36,11 @@ func main() {
 	}
 
 	database.InitTables()
+	// init GeoIp db reader and map between emoji's and countries
+	// return: struct geoIp (dbreader, emojimap)
 	proxy.InitGeoIpDB()
 	fmt.Println("Do the first crawl...")
-	go app.CrawlGo()
-	go cron.Cron()
-	api.Run()
+	go app.CrawlGo() // 抓取主程序
+	go cron.Cron()   // 定时运行
+	api.Run()        // Web Serve
 }

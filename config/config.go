@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/Sansui233/proxypool/pkg/tool"
 	"github.com/ghodss/yaml"
-	"github.com/zu1k/proxypool/pkg/tool"
 )
 
 var configFilePath = "config.yaml"
